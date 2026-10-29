@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdul Hameed | Developer Portfolio</title>
+
+<style>
+:root {
+  --bg:#050914;
+  --panel:#0c1628;
+  --cyan:#35dcff;
+  --purple:#9b62ff;
+  --text:#edf6ff;
+  --muted:#a7bad1;
+}
+* { box-sizing:border-box; margin:0; padding:0; scroll-behavior:smooth; }
+body {
+  font-family:Arial, sans-serif;
+  background:radial-gradient(circle at top,#102a52,var(--bg) 55%);
+  color:var(--text);
+  overflow-x:hidden;
+}
+a { color:inherit; text-decoration:none; }
+button { cursor:pointer; font:inherit; }
+header {
+  position:sticky; top:0; z-index:10;
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:15px; padding:16px 5%;
+  background:#050914ed; border-bottom:1px solid #17436b;
+  backdrop-filter:blur(12px);
+}
+.brand { font-size:21px; font-weight:bold; }
+.brand span { color:var(--cyan); }
+nav { display:flex; flex-wrap:wrap; gap:14px; }
+nav a { color:var(--muted); font-size:13px; }
+nav a:hover { color:var(--cyan); }
+.btn {
+  display:inline-block; border:1px solid #267db9;
+  background:#09182b; color:white; padding:10px 14px;
+  border-radius:9px; transition:.3s; margin-top:8px;
+}
+.btn:hover { transform:translateY(-3px); box-shadow:0 0 18px #168bff55; }
+.primary { background:linear-gradient(100deg,#00bfe9,#6458ff); border:0; }
+.hero {
+  min-height:450px; padding:70px 7%;
+  display:grid; grid-template-columns:1.2fr .8fr;
+  align-items:center; gap:30px;
+}
+.kicker { color:var(--cyan); letter-spacing:3px; font-size:12px; }
+h1 { font-size:clamp(40px,6vw,76px); margin:18px 0; }
+.gradient {
+  background:linear-gradient(90deg,var(--cyan),#aaaaff,var(--purple));
+  color:transparent; background-clip:text;
+  animation:shine 4s linear infinite;
+}
+@keyframes shine { 50% { filter:hue-rotate(100deg); } }
+.hero p,.panel p { color:var(--muted); line-height:1.8; }
+.type { color:var(--cyan); min-height:24px; margin-bottom:12px; }
+.pills { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+.pill {
+  border:1px solid #24618a; background:#0b1b30;
+  border-radius:8px; padding:7px 10px; font-size:12px;
+}
+.profile {
+  width:270px; height:320px; max-width:100%;
+  margin:auto; border:2px solid var(--cyan);
+  border-radius:28px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(145deg,#132c49,#090d1d);
+  box-shadow:0 0 45px #008dff35;
+  animation:float 4s ease-in-out infinite;
+}
+.profile img { width:100%; height:100%; object-fit:cover; }
+.profile-placeholder { font-size:90px; }
+@keyframes float { 50% { transform:translateY(-12px); } }
+section { padding:42px 5%; border-top:1px solid #123452; }
+h2 { font-size:30px; margin-bottom:10px; }
+.sub { color:var(--muted); margin-bottom:24px; font-size:13px; line-height:1.7; }
+.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.card,.panel,.gamebox {
+  background:linear-gradient(145deg,#0d1b30,#07101f);
+  border:1px solid #17466c; border-radius:15px; overflow:hidden;
+  transition:.3s;
+}
+.card:hover { transform:translateY(-6px); border-color:var(--cyan); }
+.art {
+  height:140px; display:grid; place-items:center;
+  font-size:58px;
+  background:linear-gradient(135deg,#194b70,#141634,#090e1b);
+}
+.card-body { padding:16px; }
+.card h3 { margin-bottom:9px; }
+.card p,.gamebox p { font-size:13px; line-height:1.7; color:var(--muted); }
+.tags { display:flex; flex-wrap:wrap; gap:6px; margin:12px 0; }
+.tag { background:#0a2740; color:#a8ddff; padding:5px 7px; border-radius:5px; font-size:10px; }
+.panel { padding:22px; }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.skill { margin:17px 0; }
+.skill-top { display:flex; justify-content:space-between; font-size:13px; margin-bottom:7px; }
+.skill-top span:last-child { color:var(--cyan); }
+.track { height:8px; background:#1a2b43; border-radius:20px; overflow:hidden; }
+.bar {
+  height:100%; width:0;
+  background:linear-gradient(90deg,#168cff,#42e4ef,var(--purple));
+  transition:width 1.5s;
+}
+.gamebox { padding:18px; }
+.gamebox .big { font-size:38px; margin-bottom:10px; }
+.gamebox h3 { margin-bottom:8px; }
+.output { color:var(--cyan); font-size:13px; margin-top:12px; min-height:20px; }
+input {
+  width:100%; background:#050b15; border:1px solid #295171;
+  color:white; padding:10px; border-radius:8px; margin:8px 0;
+}
+.phone-wrap { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.phone-card { display:flex; justify-content:center; padding:20px; background:#0a1424; border:1px solid #17466c; border-radius:15px; }
+.phone {
+  width:190px; height:340px; border:5px solid #313e55;
+  border-radius:28px; background:linear-gradient(155deg,#233b70,#10172d);
+  padding:13px; position:relative; overflow:hidden;
+}
+.notch { width:65px; height:12px; background:#02050a; border-radius:0 0 12px 12px; margin:-13px auto 15px; }
+.phone-title { text-align:center; font-size:13px; margin-bottom:15px; }
+.apps { display:grid; grid-template-columns:repeat(4,1fr); gap:13px 5px; }
+.app {
+  border:0; background:transparent; color:white; font-size:9px;
+  display:flex; flex-direction:column; align-items:center; gap:5px;
+}
+.app-icon {
+  width:29px; height:29px; display:grid; place-items:center;
+  border-radius:9px; background:linear-gradient(135deg,#00c9ff,#6658ff);
+  font-size:14px;
+}
+.phone-detail {
+  display:none; position:absolute; inset:35px 8px 12px;
+  padding:12px; background:#0b1426; border-radius:17px; font-size:12px;
+}
+.phone-detail.active { display:block; }
+.phone-detail h4 { color:var(--cyan); margin:15px 0; }
+.phone-detail p { color:var(--muted); line-height:1.6; }
+.memory-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:12px; }
+.memory-grid button { min-height:40px; background:#142944; color:white; border:1px solid #27618b; border-radius:8px; }
+.reveal { opacity:0; transform:translateY(20px); transition:.7s; }
+.reveal.visible { opacity:1; transform:none; }
+footer { padding:25px 5%; display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; color:var(--muted); font-size:13px; }
+footer a { color:var(--cyan); }
+#stars { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+
+@media(max-width:900px) {
+  .hero { grid-template-columns:1fr; text-align:center; }
+  .hero .pills,.hero-buttons { justify-content:center; }
+  .profile { width:220px; height:250px; }
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .phone-wrap { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:600px) {
+  header { justify-content:center; }
+  nav { justify-content:center; }
+  .grid,.about-grid,.phone-wrap { grid-template-columns:1fr; }
+  section { padding:32px 5%; }
+}
+</style>
+</head>
+
+<body>
+<canvas id="stars"></canvas>
+
+<header>
+  <a class="brand" href="#home">⌘ <span>Abdul Hameed</span></a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#games">3D Games</a>
+    <a href="#phone">Fake Phone</a>
+    <a href="#mini-games">Mini Games</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn primary" href="mailto:abdulmr600@gmail.com">Contact</a>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div>
+    <div class="kicker">IT DEVELOPER & GAME CREATOR</div>
+    <h1>Hi, I'm<br><span class="gradient">Abdul Hameed</span></h1>
+    <div class="type" id="typed">Web Developer</div>
+    <p>Computer science student passionate about programming, website development, 3D games and creative technology projects.</p>
+    <div class="pills">
+      <span class="pill">C++</span><span class="pill">Java</span>
+      <span class="pill">HTML</span><span class="pill">CSS</span>
+      <span class="pill">JavaScript</span><span class="pill">Python</span>
+      <span class="pill">Unity</span><span class="pill">Three.js</span>
+    </div>
+    <div class="hero-buttons">
+      <a class="btn primary" href="#projects">Explore Projects ↓</a>
+      <a class="btn" href="mailto:abdulmr600@gmail.com">Email Me</a>
+    </div>
+  </div>
+
+  <div class="profile">
+    <!-- Add your photo in the same folder and name it profile.jpg -->
+    <img src="profile.jpg" alt="Abdul Hameed profile photo"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <div class="profile-placeholder" style="display:none">👨‍💻</div>
+  </div>
+</section>
+
+<section id="about" class="reveal">
+  <h2>♙ About Me</h2>
+  <p class="sub">Developer • Programmer • Game Enthusiast</p>
+  <div class="about-grid">
+    <div class="panel">
+      <p>I'm Abdul Hameed, an aspiring software developer. I enjoy building websites, learning programming languages, creating interactive projects and exploring game development.</p>
+      <p style="margin-top:12px">My goal is to build useful software and fun gaming experiences while improving my development skills.</p>
+    </div>
+    <div class="panel">
+      <h3>Tools & Technologies</h3>
+      <div class="pills">
+        <span class="pill">VS Code</span><span class="pill">HTML/CSS</span>
+        <span class="pill">JavaScript</span><span class="pill">C++</span>
+        <span class="pill">Java OOP</span><span class="pill">Python</span>
+        <span class="pill">Unity</span><span class="pill">Three.js</span>
+        <span class="pill">Responsive UI</span><span class="pill">Game Logic</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="reveal">
+  <h2>⚙ My Skills</h2>
+  <p class="sub">Animated skill bars. Change the values to match your actual experience.</p>
+  <div class="about-grid">
+    <div class="panel">
+      <div class="skill"><div class="skill-top"><span>C++</span><span>75%</span></div><div class="track"><div class="bar" data-level="75"></div></div></div>
+      <div class="skill"><div class="skill-top"><span>Java</span><span>70%</span></div><div class="track"><div class="bar" data-level="70"></div></div></div>
+      <div class="skill"><div class="skill-top"><span>HTML & CSS</span><span>90%</span></div><div class="track"><div class="bar" data-level="90"></div></div></div>
+      <div class="skill"><div class="skill-top"><span>JavaScript</span><span>75%</span></div><div class="track"><div class="bar" data-level="75"></div></div></div>
+      <div class="skill"><div class="skill-top"><span>Python</span><span>65%</span></div><div class="track"><div class="bar" data-level="65"></div></div></div>
+      <div class="skill"><div class="skill-top"><span>Unity / C#</span><span>55%</span></div><div class="track"><div class="bar" data-level="55"></div></div></div>
+    </div>
+    <div class="panel">
+      <h3>My Development Interests</h3>
+      <div class="pills">
+        <span class="pill">Web Apps</span><span class="pill">3D Worlds</span>
+        <span class="pill">Game Physics</span><span class="pill">UI Design</span>
+        <span class="pill">Animations</span><span class="pill">Software Projects</span>
+      </div>
+      <p>Learning modern web interfaces, game mechanics and interactive design.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <h2>⌘ Advanced Projects</h2>
+  <p class="sub">Portfolio project concepts and programming work.</p>
+  <div class="grid">
+    <article class="card">
+      <div class="art">🌆</div><div class="card-body">
+        <h3>3D Life Simulator</h3>
+        <p>Open-world city concept with player movement, jobs, money, health, stamina, houses and vehicles.</p>
+        <div class="tags"><span class="tag">Three.js</span><span class="tag">JavaScript</span></div>
+        <a class="btn" href="#games">View Game Concepts</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="art">🏎️</div><div class="card-body">
+        <h3>Formula Racing Simulator</h3>
+        <p>Racing project concept with vehicle physics, cockpit view, tracks and career progression.</p>
+        <div class="tags"><span class="tag">Unity</span><span class="tag">C#</span></div>
+        <a class="btn" href="#games">View Game Concepts</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="art">🪙</div><div class="card-body">
+        <h3>Coin Adventure</h3>
+        <p>Platform game with coins, obstacles, health and level progression.</p>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+        <a class="btn" href="#mini-games">Play Mini Games</a>
+      </div>
+    </article>
+    <article class="card">
+      <div class="art">☕</div><div class="card-body">
+        <h3>Java Student Manager</h3>
+        <p>Student records concept with marks, IDs, validation and object-oriented design.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">OOP</span></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="art">🧠</div><div class="card-body">
+        <h3>C++ Quiz Application</h3>
+        <p>Quiz concept with multiple-choice questions, scoring and final results.</p>
+        <div class="tags"><span class="tag">C++</span><span class="tag">Logic</span></div>
+      </div>
+    </article>
+    <article class="card">
+      <div class="art">🛍️</div><div class="card-body">
+        <h3>Shopping Website</h3>
+        <p>Responsive storefront concept with product cards, categories and cart UI.</p>
+        <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="games" class="reveal">
+  <h2>🎮 3D Games & HD Game Concepts</h2>
+  <p class="sub">Original game concepts inspired by open-world, driving and action genres. These cards are not full GTA game builds.</p>
+  <div class="grid">
+    <article class="card"><div class="art">🏙️</div><div class="card-body"><h3>City Life 3D</h3><p>Explore a fictional city, discover locations and create your own virtual life.</p><button class="btn preview" data-game="City Life 3D">Preview</button></div></article>
+    <article class="card"><div class="art">🏞️</div><div class="card-body"><h3>Mountain Explorer</h3><p>Explore hills, trails, checkpoints and collectables.</p><button class="btn preview" data-game="Mountain Explorer">Preview</button></div></article>
+    <article class="card"><div class="art">🚘</div><div class="card-body"><h3>Car Simulator 3D</h3><p>Driving concept with city roads, cars and time challenges.</p><button class="btn preview" data-game="Car Simulator 3D">Preview</button></div></article>
+    <article class="card"><div class="art">🚔</div><div class="card-body"><h3>Open-World Crime City</h3><p>Original GTA-style concept with fictional missions and vehicles.</p><button class="btn preview" data-game="Open-World Crime City">Preview</button></div></article>
+    <article class="card"><div class="art">🏁</div><div class="card-body"><h3>Street Racing HD</h3><p>Night racing concept with neon lights and time trials.</p><button class="btn preview" data-game="Street Racing HD">Preview</button></div></article>
+    <article class="card"><div class="art">🪖</div><div class="card-body"><h3>Tactical Action Arena</h3><p>Fictional action concept with objectives and AI opponents.</p><button class="btn preview" data-game="Tactical Action Arena">Preview</button></div></article>
+  </div>
+  <p id="gameOutput" class="output">Choose a game concept to preview.</p>
+</section>
+
+<section id="phone" class="reveal">
+  <h2>📱 Fake Phone Simulator</h2>
+  <p class="sub">Interactive mock phones. These are pretend app screens, not real phone clones or device controls.</p>
+  <div class="phone-wrap">
+    <div class="phone-card"><div class="phone">
+      <div class="notch"></div><div class="phone-title">Hameed Phone</div>
+      <div class="apps">
+        <button class="app" data-app="Phone"><span class="app-icon">☎</span>Phone</button>
+        <button class="app" data-app="Messages"><span class="app-icon">✉</span>Messages</button>
+        <button class="app" data-app="Camera"><span class="app-icon">📷</span>Camera</button>
+        <button class="app" data-app="Gallery"><span class="app-icon">🖼</span>Gallery</button>
+        <button class="app" data-app="Music"><span class="app-icon">♫</span>Music</button>
+        <button class="app" data-app="Games"><span class="app-icon">🎮</span>Games</button>
+        <button class="app" data-app="Settings"><span class="app-icon">⚙</span>Settings</button>
+        <button class="app" data-app="Browser"><span class="app-icon">🌐</span>Browser</button>
+      </div>
+      <div class="phone-detail"><button class="btn back">← Home</button><h4></h4><p></p></div>
+    </div></div>
+    <div class="phone-card"><div class="phone" style="background:linear-gradient(155deg,#355d79,#17243d 60%,#35204d)">
+      <div class="notch"></div><div class="phone-title">Galaxy Demo</div>
+      <div class="apps">
+        <button class="app" data-app="Calls"><span class="app-icon">📞</span>Calls</button>
+        <button class="app" data-app="Chat"><span class="app-icon">💬</span>Chat</button>
+        <button class="app" data-app="Photos"><span class="app-icon">🌄</span>Photos</button>
+        <button class="app" data-app="Weather"><span class="app-icon">☀</span>Weather</button>
+        <button class="app" data-app="Calendar"><span class="app-icon">📅</span>Calendar</button>
+        <button class="app" data-app="Notes"><span class="app-icon">📝</span>Notes</button>
+        <button class="app" data-app="Maps"><span class="app-icon">🗺</span>Maps</button>
+        <button class="app" data-app="Calculator"><span class="app-icon">🧮</span>Calculator</button>
+      </div>
+      <div class="phone-detail"><button class="btn back">← Home</button><h4></h4><p></p></div>
+    </div></div>
+    <div class="phone-card"><div class="phone" style="background:linear-gradient(155deg,#1b594d,#101b2d 60%,#183e65)">
+      <div class="notch"></div><div class="phone-title">Android Mock</div>
+      <div class="apps">
+        <button class="app" data-app="Store"><span class="app-icon">🛒</span>Store</button>
+        <button class="app" data-app="Email"><span class="app-icon">📧</span>Email</button>
+        <button class="app" data-app="Video"><span class="app-icon">▶</span>Video</button>
+        <button class="app" data-app="Clock"><span class="app-icon">⏰</span>Clock</button>
+        <button class="app" data-app="Files"><span class="app-icon">📁</span>Files</button>
+        <button class="app" data-app="Security"><span class="app-icon">🛡</span>Security</button>
+        <button class="app" data-app="Theme"><span class="app-icon">🎨</span>Theme</button>
+        <button class="app" data-app="About"><span class="app-icon">ⓘ</span>About</button>
+      </div>
+      <div class="phone-detail"><button class="btn back">← Home</button><h4></h4><p></p></div>
+    </div></div>
+  </div>
+</section>
+
+<section id="mini-games" class="reveal">
+  <h2>🕹️ Play Mini Games</h2>
+  <p class="sub">Play these games directly on the website.</p>
+  <div class="grid">
+    <div class="gamebox"><div class="big">🏆</div><h3>Click Challenge</h3><p>Click to increase your score.</p><button class="btn primary" id="clickBtn">Click Me!</button><div class="output">Score: <span id="score">0</span></div></div>
+    <div class="gamebox"><div class="big">🎲</div><h3>Number Guessing</h3><p>Guess the number from 1 to 10.</p><input id="guessInput" type="number" min="1" max="10" placeholder="Enter 1–10"><button class="btn primary" id="guessBtn">Check</button> <button class="btn" id="guessReset">New Number</button><div id="guessOutput" class="output">Ready!</div></div>
+    <div class="gamebox"><div class="big">🧠</div><h3>Memory Match</h3><p>Find matching emoji pairs.</p><div class="memory-grid" id="memoryGrid"></div><div id="memoryOutput" class="output">Find all pairs!</div><button class="btn" id="memoryReset">Restart</button></div>
+    <div class="gamebox"><div class="big">⭕</div><h3>Tic-Tac-Toe</h3><p>Take turns with X and O.</p><div id="ticGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0"></div><div id="ticOutput" class="output">X starts!</div><button class="btn" id="ticReset">Restart</button></div>
+    <div class="gamebox"><div class="big">🐍</div><h3>Snake Lite</h3><p>Use arrow keys to collect food.</p><canvas id="snakeCanvas" width="240" height="180" style="width:100%;background:#06101d;border:1px solid #28516e;border-radius:8px;margin:12px 0"></canvas><button class="btn primary" id="snakeStart">Start / Restart</button><div id="snakeOutput" class="output">Use arrow keys.</div></div>
+    <div class="gamebox"><div class="big">⚡</div><h3>Reaction Test</h3><p>Click when the button turns green.</p><button class="btn primary" id="reactionBtn">Start Test</button><div id="reactionOutput" class="output">Ready?</div></div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <h2>✉ Contact Me</h2>
+  <p class="sub">Have a project idea or want to connect?</p>
+  <div class="panel">
+    <p>Email: <a style="color:var(--cyan)" href="mailto:abdulmr600@gmail.com">abdulmr600@gmail.com</a></p>
+    <p style="margin-top:10px">Thanks for visiting my portfolio!</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© <span id="year"></span> Abdul Hameed</span>
+  <a href="#home">Back to Top ↑</a>
+  <span>Build • Code • Create • Play</span>
+</footer>
+
+<script>
+// Typewriter animation
+const roles=["Web Developer","C++ & Java Programmer","3D Game Enthusiast","Build | Code | Create | Play"];
+let ri=0,ci=0,remove=false;
+const typed=document.getElementById("typed");
+function typeText(){
+  const s=roles[ri];
+  typed.textContent=s.slice(0,ci);
+  if(!remove && ci<s.length){ci++;setTimeout(typeText,75);}
+  else if(remove && ci>0){ci--;setTimeout(typeText,35);}
+  else {remove=!remove;if(!remove)ri=(ri+1)%roles.length;setTimeout(typeText,remove?900:250);}
+}
+typeText();
+
+// Scroll reveal and skill animations
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      entry.target.querySelectorAll(".bar").forEach(bar=>bar.style.width=bar.dataset.level+"%");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+// Star particle animation
+const canvas=document.getElementById("stars"),ctx=canvas.getContext("2d");
+let stars=[];
+function resizeStars(){
+  canvas.width=innerWidth;canvas.height=innerHeight;
+  stars=Array.from({length:Math.min(90,Math.floor(innerWidth/12))},()=>({
+    x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+    r:Math.random()*1.5+.3,v:Math.random()*.35+.08
+  }));
+}
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    s.y+=s.v;if(s.y>canvas.height)s.y=0;
+    ctx.fillStyle="rgba(105,190,255,.65)";
+    ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+addEventListener("resize",resizeStars);resizeStars();drawStars();
+
+// Game concept preview
+document.querySelectorAll(".preview").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.getElementById("gameOutput").textContent=
+      "🎮 "+btn.dataset.game+": concept preview selected. Add a playable game build here when ready.";
+  });
+});
+
+// Fake phone mock apps
+const descriptions={
+  Phone:"Demo dialer. No real calls can be made.",
+  Messages:"Mock messages inbox. No real messages are sent.",
+  Camera:"Camera interface concept; this demo does not access your camera.",
+  Gallery:"Pretend photo gallery screen.",
+  Music:"Music player interface concept.",
+  Games:"Pretend game launcher.",
+  Settings:"Mock settings screen. No device settings are changed.",
+  Browser:"Mock browser screen.",
+  Calls:"Demo call history.",
+  Chat:"Mock chat inbox.",
+  Photos:"Pretend photo gallery.",
+  Weather:"Sample weather screen, not a live forecast.",
+  Calendar:"Mock calendar application.",
+  Notes:"Notes application concept.",
+  Maps:"Mock map screen; it does not access your location.",
+  Calculator:"Calculator application concept.",
+  Store:"Mock app store.",
+  Email:"Email interface concept; no emails are sent.",
+  Video:"Video player interface concept.",
+  Clock:"Clock interface concept.",
+  Files:"Mock file browser; it cannot access device files.",
+  Security:"Security dashboard concept.",
+  Theme:"Theme selection concept.",
+  About:"Fictional phone interface made for this portfolio."
+};
+document.querySelectorAll(".app").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const phone=btn.closest(".phone");
+    const detail=phone.querySelector(".phone-detail");
+    detail.querySelector("h4").textContent=btn.dataset.app;
+    detail.querySelector("p").textContent=descriptions[btn.dataset.app]||"Mock app preview.";
+    detail.classList.add("active");
+  });
+});
+document.querySelectorAll(".back").forEach(btn=>{
+  btn.addEventListener("click",()=>btn.closest(".phone-detail").classList.remove("active"));
+});
+
+// Click challenge
+let score=0;
+document.getElementById("clickBtn").onclick=()=>{
+  document.getElementById("score").textContent=++score;
+};
+
+// Number guessing
+let secret=Math.floor(Math.random()*10)+1;
+document.getElementById("guessBtn").onclick=()=>{
+  const input=document.getElementById("guessInput");
+  const out=document.getElementById("guessOutput");
+  const n=Number(input.value);
+  if(!input.value||n<1||n>10){out.textContent="Enter a number from 1 to 10.";return;}
+  out.textContent=n===secret?"Correct! You got it!":n<secret?"Try a higher number.":"Try a lower number.";
+};
+document.getElementById("guessReset").onclick=()=>{
+  secret=Math.floor(Math.random()*10)+1;
+  document.getElementById("guessInput").value="";
+  document.getElementById("guessOutput").textContent="New number ready!";
+};
+
+// Memory match
+const emojis=["🚀","🎮","💎","👾","🚀","🎮","💎","👾"];
+let flipped=[],matched=0,locked=false;
+function setupMemory(){
+  const arr=[...emojis].sort(()=>Math.random()-.5);
+  const grid=document.getElementById("memoryGrid");
+  grid.innerHTML="";flipped=[];matched=0;locked=false;
+  document.getElementById("memoryOutput").textContent="Find all pairs!";
+  arr.forEach(emoji=>{
+    const b=document.createElement("button");
+    b.textContent="?";b.dataset.emoji=emoji;
+    b.onclick=()=>{
+      if(locked||b.classList.contains("done")||flipped.includes(b))return;
+      b.textContent=emoji;flipped.push(b);
+      if(flipped.length===2){
+        locked=true;
+        if(flipped[0].dataset.emoji===flipped[1].dataset.emoji){
+          flipped.forEach(x=>{x.classList.add("done");x.disabled=true;});
+          matched+=2;flipped=[];locked=false;
+          document.getElementById("memoryOutput").textContent=matched===8?"You matched every pair!":"Match found!";
+        }else{
+          setTimeout(()=>{flipped.forEach(x=>x.textContent="?");flipped=[];locked=false;},700);
+        }
+      }
+    };
+    grid.appendChild(b);
+  });
+}
+document.getElementById("memoryReset").onclick=setupMemory;
+setupMemory();
+
+// Tic-Tac-Toe
+let board=Array(9).fill(""),turn="X",ended=false;
+function checkWin(p){
+  return [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+    .some(line=>line.every(i=>board[i]===p));
+}
+function renderTic(){
+  const grid=document.getElementById("ticGrid");grid.innerHTML="";
+  board.forEach((value,i)=>{
+    const b=document.createElement("button");
+    b.textContent=value||" ";
+    b.style.cssText="height:48px;font-size:22px;background:#112640;color:white;border:1px solid #28618c;border-radius:8px";
+    b.onclick=()=>{
+      if(ended||board[i])return;
+      board[i]=turn;
+      if(checkWin(turn)){document.getElementById("ticOutput").textContent=turn+" wins!";ended=true;}
+      else if(board.every(Boolean)){document.getElementById("ticOutput").textContent="It's a draw!";ended=true;}
+      else{turn=turn==="X"?"O":"X";document.getElementById("ticOutput").textContent=turn+"'s turn";}
+      renderTic();
+    };
+    grid.appendChild(b);
+  });
+}
+function resetTic(){
+  board=Array(9).fill("");turn="X";ended=false;
+  document.getElementById("ticOutput").textContent="X starts!";
+  renderTic();
+}
+document.getElementById("ticReset").onclick=resetTic;
+resetTic();
+
+// Snake game
+const sc=document.getElementById("snakeCanvas"),sx=sc.getContext("2d");
+let snake=[],food={},dir={x:1,y:0},snakeTimer=null,snakeScore=0;
+function placeFood(){food={x:Math.floor(Math.random()*12),y:Math.floor(Math.random()*9)};}
+function drawSnake(){
+  sx.clearRect(0,0,sc.width,sc.height);
+  sx.fillStyle="#ff6b8b";sx.fillRect(food.x*20+2,food.y*20+2,16,16);
+  snake.forEach((p,i)=>{
+    sx.fillStyle=i?"#168eac":"#44f2d2";
+    sx.fillRect(p.x*20+2,p.y*20+2,16,16);
+  });
+}
+function startSnake(){
+  clearInterval(snakeTimer);
+  snake=[{x:5,y:4},{x:4,y:4},{x:3,y:4}];
+  dir={x:1,y:0};snakeScore=0;placeFood();drawSnake();
+  document.getElementById("snakeOutput").textContent="Score: 0 — use arrow keys";
+  snakeTimer=setInterval(()=>{
+    const head={x:snake[0].x+dir.x,y:snake[0].y+dir.y};
+    if(head.x<0||head.y<0||head.x>=12||head.y>=9||snake.some(p=>p.x===head.x&&p.y===head.y)){
+      clearInterval(snakeTimer);
+      document.getElementById("snakeOutput").textContent="Game over! Score: "+snakeScore;
+      return;
+    }
+    snake.unshift(head);
+    if(head.x===food.x&&head.y===food.y){snakeScore++;placeFood();}
+    else snake.pop();
+    document.getElementById("snakeOutput").textContent="Score: "+snakeScore;
+    drawSnake();
+  },150);
+}
+document.getElementById("snakeStart").onclick=startSnake;
+addEventListener("keydown",e=>{
+  const d={ArrowUp:{x:0,y:-1},ArrowDown:{x:0,y:1},ArrowLeft:{x:-1,y:0},ArrowRight:{x:1,y:0}}[e.key];
+  if(d&&!(d.x===-dir.x&&d.y===-dir.y))dir=d;
+});
+
+// Reaction-time game
+let reactionState="idle",reactionTimer=null,startedAt=0;
+const reactionBtn=document.getElementById("reactionBtn");
+const reactionOut=document.getElementById("reactionOutput");
+reactionBtn.onclick=()=>{
+  if(reactionState==="waiting"){
+    clearTimeout(reactionTimer);
+    reactionState="idle";reactionOut.textContent="Too soon! Try again.";
+    reactionBtn.textContent="Start Test";reactionBtn.style.background="";
+    return;
+  }
+  if(reactionState==="ready"){
+    reactionOut.textContent="Reaction time: "+Math.round(performance.now()-startedAt)+" ms";
+    reactionState="idle";reactionBtn.textContent="Try Again";reactionBtn.style.background="";
+    return;
+  }
+  reactionState="waiting";reactionBtn.textContent="Wait for green…";
+  reactionBtn.style.background="#8c3548";reactionOut.textContent="Wait…";
+  reactionTimer=setTimeout(()=>{
+    if(reactionState==="waiting"){
+      reactionState="ready";startedAt=performance.now();
+      reactionBtn.textContent="CLICK NOW!";reactionBtn.style.background="#138b55";
+      reactionOut.textContent="Go!";
+    }
+  },1000+Math.random()*2500);
+};
+
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
